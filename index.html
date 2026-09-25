@@ -4,36 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="application-name" content="QR Code Generator">
-<meta name="description" content="Create a free QR code from any URL or text. Generate and download a QR code instantly in your browser.">
+<meta name="description" content="Free QR code generator for URLs and text. Create, scan-ready QR codes instantly in your browser and download PNG images with no account required.">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Free QR Code Generator">
-<meta property="og:description" content="Create and download QR codes instantly from any URL or text.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Free QR Code Generator - Create QR Codes Instantly">
+<meta property="og:description" content="Create free QR codes from URLs or text and download them instantly. Fast, simple, and browser-based.">
 <meta property="og:type" content="website">
 <title>Free QR Code Generator - Create QR Codes Instantly</title>
+
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <script src="js/qrcode.min.js"></script>
+
 <style>
-body{padding-bottom:90px}
-#qrcode{margin-top:20px;min-height:20px}
+body{background:#fff;color:#212529;padding-bottom:90px}
+.container{padding-top:28px}
+.hero{max-width:850px;margin:0 auto}
+.hero h1{font-weight:700}
+.hero .lead{max-width:720px;margin:12px auto 0}
+.tool-card{max-width:800px;margin:28px auto 0;border:1px solid #e9ecef;border-radius:14px;padding:24px;background:#fff;box-shadow:0 5px 22px rgba(0,0,0,.05)}
+#qrcode{margin-top:22px;min-height:20px}
 #qrcode img,#qrcode canvas{max-width:min(512px,100%);height:auto}
-.container{padding-top:32px}
-.hero-text{max-width:720px;margin:0 auto 24px}
-.tool-card{max-width:760px;margin:0 auto}
-.footer{position:fixed;bottom:0;width:100%;background:#f8f9fa;padding:12px}
+.content-section{max-width:900px;margin:54px auto 0}
+.content-section h2{margin-bottom:16px}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.feature{border:1px solid #e9ecef;border-radius:10px;padding:18px;height:100%}
+.ad-slot{max-width:900px;min-height:90px;margin:28px auto;border:1px dashed #ced4da;background:#fafafa;display:flex;align-items:center;justify-content:center;text-align:center;color:#6c757d;font-size:.85rem}
+.ad-slot span{padding:12px}
+.footer{position:fixed;bottom:0;width:100%;background:#f8f9fa;padding:12px;z-index:10}
 .footer p{margin:0;font-size:.9rem}
+.footer a{white-space:nowrap}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.small-note{font-size:.92rem;color:#6c757d}
 </style>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Free QR Code Generator",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "description":"Free browser-based QR code generator for URLs and text.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
 </head>
+
 <body>
 <main class="container">
-<header class="hero-text text-center">
+<header class="hero text-center">
 <h1>Free QR Code Generator</h1>
-<p class="lead">Create a QR code from any URL or text and download it instantly.</p>
+<p class="lead">Create a QR code from any URL or text, then download it instantly as a PNG. No sign-up required.</p>
+<p class="small-note">Fast, simple, mobile-friendly, and generated directly in your browser.</p>
 </header>
+
+<!-- Ad placement: keep clearly separated from the generator and replace with approved ad code later. -->
+<div class="ad-slot" aria-label="Advertisement">
+<span>Advertisement</span>
+</div>
+
 <section class="tool-card" aria-labelledby="generator-title">
 <h2 id="generator-title" class="sr-only">QR Code Generator</h2>
 <div class="input-group mb-3">
@@ -46,12 +79,84 @@ body{padding-bottom:90px}
 <p id="urlText" class="text-center text-break mt-3 mb-3"></p>
 <div class="d-flex justify-content-center"><button id="downloadButton" class="btn btn-outline-primary btn-lg" type="button" hidden>Download QR Code</button></div>
 </section>
-<section class="hero-text mt-5 text-center">
-<h2>Simple, fast, and free</h2>
-<p>Create QR codes directly in your browser. No account or upload is required for basic QR code generation.</p>
+
+<section class="content-section" aria-labelledby="why-title">
+<h2 id="why-title">Why use this QR code generator?</h2>
+<div class="feature-grid">
+<article class="feature"><h3 class="h5">Free to use</h3><p class="mb-0">Generate QR codes for everyday links, notes, menus, events, forms, contact pages, and more without creating an account.</p></article>
+<article class="feature"><h3 class="h5">Instant generation</h3><p class="mb-0">Enter your content, generate the code, and download a PNG in seconds.</p></article>
+<article class="feature"><h3 class="h5">Works in your browser</h3><p class="mb-0">Basic QR generation happens on the page, so there is no need to upload your text or URL to a QR service.</p></article>
+</div>
+</section>
+
+<section class="content-section" aria-labelledby="uses-title">
+<h2 id="uses-title">What can you put in a QR code?</h2>
+<p>QR codes are useful whenever people need a quick way to open or share information from a phone.</p>
+<div class="feature-grid">
+<article class="feature"><h3 class="h5">Website links</h3><p class="mb-0">Share a website, landing page, online store, signup form, or event page.</p></article>
+<article class="feature"><h3 class="h5">Business &amp; marketing</h3><p class="mb-0">Add QR codes to flyers, posters, packaging, business cards, menus, and printed campaigns.</p></article>
+<article class="feature"><h3 class="h5">Events &amp; education</h3><p class="mb-0">Link guests or students to schedules, resources, registration pages, documents, and announcements.</p></article>
+<article class="feature"><h3 class="h5">Plain text</h3><p class="mb-0">Encode short notes, instructions, labels, or other text that you want to make easy to scan.</p></article>
+</div>
+</section>
+
+<div class="ad-slot" aria-label="Advertisement">
+<span>Advertisement</span>
+</div>
+
+<section class="content-section" aria-labelledby="guide-title">
+<h2 id="guide-title">How to create a QR code</h2>
+<ol>
+<li>Enter a URL or text in the generator above.</li>
+<li>Click <strong>Generate QR Code</strong>, or press Enter.</li>
+<li>Check the generated QR code with your phone before printing or sharing it.</li>
+<li>Click <strong>Download QR Code</strong> to save the PNG image.</li>
+</ol>
+<p class="small-note">For printed materials, test the final printed size and scan from the distance your audience will use.</p>
+</section>
+
+<section class="content-section" aria-labelledby="tips-title">
+<h2 id="tips-title">QR code tips for better scans</h2>
+<ul>
+<li>Use a clear, high-contrast QR code against a plain background.</li>
+<li>Leave some empty space around the QR code so scanners can detect its edges.</li>
+<li>Do not crop the QR code or cover its corners with graphics.</li>
+<li>Always test the downloaded or printed code on more than one phone before publishing.</li>
+<li>Keep the destination URL working and mobile-friendly.</li>
+</ul>
+</section>
+
+<section class="content-section" aria-labelledby="faq-title">
+<h2 id="faq-title">QR Code Generator FAQ</h2>
+<div id="faq">
+<h3 class="h5">Is this QR code generator free?</h3>
+<p>Yes. This generator is free for basic URL and text QR codes.</p>
+<h3 class="h5 mt-4">Do I need an account?</h3>
+<p>No account is required to create and download a basic QR code.</p>
+<h3 class="h5 mt-4">Can I use the QR code commercially?</h3>
+<p>You can use a QR code you create for ordinary personal or business purposes. Make sure the destination content and any third-party assets you use are properly licensed.</p>
+<h3 class="h5 mt-4">Will a QR code expire?</h3>
+<p>A static QR code does not contain an expiration date. However, the URL or text encoded in it can become unavailable or change, so always test important QR codes before and after publishing.</p>
+<h3 class="h5 mt-4">What should I do before printing?</h3>
+<p>Scan the final QR code from the actual printed size and verify that it opens the intended destination.</p>
+</div>
+</section>
+
+<div class="ad-slot" aria-label="Advertisement">
+<span>Advertisement</span>
+</div>
+
+<section class="content-section text-center" aria-labelledby="cta-title">
+<h2 id="cta-title">Create your QR code now</h2>
+<p>Paste a URL or text above and generate a QR code in seconds.</p>
+<a href="#generator-title" class="btn btn-primary">Back to QR Generator</a>
 </section>
 </main>
-<footer class="footer"><p class="text-center">Built with <a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="noopener noreferrer">qrcode.js</a> and <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap</a>.</p></footer>
+
+<footer class="footer">
+<p class="text-center">Free QR Code Generator · Built with <a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="noopener noreferrer">qrcode.js</a> and <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap</a>.</p>
+</footer>
+
 <script>
 const textInput=document.getElementById('text'),qrElem=document.getElementById('qrcode'),urlText=document.getElementById('urlText'),downloadButton=document.getElementById('downloadButton'),generateButton=document.getElementById('generateButton'),message=document.getElementById('message');
 function generateQRCode(){const text=textInput.value.trim();if(!text){message.textContent='Please enter a URL or text.';textInput.focus();return}message.textContent='';qrElem.innerHTML='';new QRCode(qrElem,{text:text,width:512,height:512,correctLevel:QRCode.CorrectLevel.M});urlText.textContent=text;downloadButton.hidden=false}
