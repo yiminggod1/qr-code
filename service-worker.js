@@ -1,5 +1,5 @@
 // Service Worker Implementation
-const CACHE_NAME = 'qr-code-generator-v1';
+const CACHE_NAME = 'qr-code-generator-v2';
 const relFilesToCache = [
   'index.html',
   'manifest.json',
