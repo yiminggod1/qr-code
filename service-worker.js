@@ -1,37 +1,51 @@
-// Service Worker Implementation
-const CACHE_NAME = 'qr-code-generator-v2';
-const relFilesToCache = [
+const CACHE_NAME = 'qr-code-generator-v3';
+const FILES = [
   'index.html',
+  'url-qr-code.html',
+  'wifi-qr-code.html',
+  'email-qr-code.html',
+  'vcard-qr-code.html',
+  'sms-qr-code.html',
+  'phone-qr-code.html',
+  'whatsapp-qr-code.html',
+  'pdf-qr-code.html',
+  'google-review-qr-code.html',
+  'qr-code-scanner.html',
+  'qr-code-generator-for-business.html',
+  '404.html',
+  'privacy.html',
+  'terms.html',
   'manifest.json',
   'css/bootstrap.min.css',
-  'js/qrcode.min.js',
-  '',
-];
-const loc = self.location;
+  'js/qrcode.min.js'
+].map(file => new URL(file, self.location).pathname);
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('Opened cache');
-        // now, we want to modify the relFilesToCache to include the path 
-        // as a prefix
-        const cacheUrls = relFilesToCache.map(
-          fileName => new URL(fileName, loc).pathname
-        );
-        return cache.addAll(cacheUrls);
-      })
+      .then(cache => cache.addAll(FILES))
+      .then(() => self.skipWaiting())
   );
 });
 
-self.addEventListener('fetch', (event) => {
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
+  const isNavigation = event.request.mode === 'navigate';
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        if (response) {
+    isNavigation
+      ? fetch(event.request).then(response => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
           return response;
-        }
-        return fetch(event.request);
-      })
+        }).catch(() => caches.match(event.request).then(cached => cached || caches.match(FILES[0])))
+      : caches.match(event.request).then(cached => cached || fetch(event.request))
   );
 });
