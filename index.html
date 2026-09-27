@@ -1,65 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="application-name" content="QR Code Generator">
 <meta name="description" content="Free QR code generator for URLs, text, WiFi, email, phone, SMS, and contact information. Create, download, copy, and print QR codes instantly in your browser.">
-<meta name="robots" content="index, follow"><meta name="theme-color" content="#ffffff">
-<meta property="og:title" content="Free QR Code Generator - URL, WiFi, Text & More">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0b5cff">
+<meta property="og:title" content="Free QR Code Generator - Create QR Codes Online">
 <meta property="og:description" content="Create free QR codes for websites, WiFi, email, phone numbers, SMS, contacts, and text. No account required.">
 <meta property="og:type" content="website">
-<title>Free QR Code Generator - URL, WiFi, Text & More</title>
-<link rel="stylesheet" href="css/bootstrap.min.css"><link rel="manifest" href="manifest.json">
-<link rel="icon" href="icons/favicon.ico" type="image/x-icon"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<title>Free QR Code Generator - Create QR Codes Online</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <script src="js/qrcode.min.js"></script>
 <style>
-body{background:#fff;color:#212529;padding-bottom:90px}.container{padding-top:28px}.hero{max-width:900px;margin:0 auto}.hero h1{font-weight:700}.hero .lead{max-width:760px;margin:12px auto}.tool-card{max-width:820px;margin:28px auto 0;border:1px solid #e9ecef;border-radius:14px;padding:24px;background:#fff;box-shadow:0 5px 22px rgba(0,0,0,.05)}.type-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.type-tabs button{border:1px solid #ced4da;background:#fff;border-radius:8px;padding:8px 13px}.type-tabs button.active{background:#0d6efd;color:#fff;border-color:#0d6efd}.advanced{background:#f8f9fa;border-radius:10px;padding:16px;margin-top:14px}.advanced[hidden]{display:none!important}#qrcode{margin-top:22px;min-height:20px}#qrcode img,#qrcode canvas{max-width:min(512px,100%);height:auto}.action-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.content-section{max-width:950px;margin:54px auto 0}.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.feature{border:1px solid #e9ecef;border-radius:10px;padding:18px;height:100%}.ad-slot{max-width:950px;min-height:90px;margin:30px auto;border:1px dashed #ced4da;background:#fafafa;display:flex;align-items:center;justify-content:center;text-align:center;color:#6c757d;font-size:.85rem}.footer{position:fixed;bottom:0;width:100%;background:#f8f9fa;padding:12px;z-index:10}.footer p{margin:0;font-size:.9rem}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.small-note{font-size:.92rem;color:#6c757d}.history{margin-top:20px}.history button{margin:3px}.faq h3{margin-top:22px}.status{min-height:24px}
+:root{--primary:#0b5cff;--primary-dark:#0846c7;--ink:#172033;--muted:#64748b;--line:#e5eaf2;--soft:#f5f8ff;--card:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f7f9fc;color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;padding-bottom:0}
+a{color:var(--primary)}
+.site-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.nav-inner{max-width:1160px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-size:1.1rem;font-weight:800;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px}
+.brand-mark{width:34px;height:34px;border-radius:9px;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:900;font-size:17px}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{text-decoration:none;color:#526074;font-size:.92rem;font-weight:600}
+.nav-links a:hover{color:var(--primary)}
+.page{max-width:1160px;margin:auto;padding:0 20px}
+.hero{padding:62px 0 34px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:#eaf1ff;color:#1552c9;font-weight:700;font-size:.82rem;margin-bottom:17px}
+.hero h1{font-size:clamp(2.3rem,5vw,4.2rem);line-height:1.05;letter-spacing:-.04em;font-weight:850;margin:0 auto 18px;max-width:850px}
+.hero h1 span{color:var(--primary)}
+.hero p{font-size:1.1rem;line-height:1.7;color:var(--muted);max-width:760px;margin:0 auto}
+.hero-points{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:22px;color:#526074;font-size:.9rem;font-weight:600}
+.hero-points span{display:inline-flex;align-items:center;gap:6px}
+.ad-slot{min-height:90px;max-width:970px;margin:20px auto;border:1px dashed #cbd5e1;border-radius:12px;background:#fbfcfe;display:flex;align-items:center;justify-content:center;text-align:center;color:#94a3b8;font-size:.78rem}
+.generator-wrap{max-width:980px;margin:12px auto 0}
+.tool-card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 55px rgba(20,42,80,.10);overflow:hidden}
+.tool-head{padding:26px 28px 0;text-align:center}
+.tool-head h2{font-size:1.45rem;font-weight:800;margin:0 0 7px}
+.tool-head p{color:var(--muted);margin:0 0 20px;font-size:.92rem}
+.type-tabs{display:flex;gap:8px;flex-wrap:wrap;padding:0 28px 20px;border-bottom:1px solid var(--line)}
+.type-tabs button{border:1px solid #d8e0ec;background:#fff;color:#526074;border-radius:10px;padding:9px 13px;font-weight:700;font-size:.88rem;transition:.15s ease}
+.type-tabs button:hover{border-color:#aebddd;background:#f8faff}
+.type-tabs button.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 5px 14px rgba(11,92,255,.2)}
+.tool-body{padding:28px}
+.input-label{font-size:.9rem;font-weight:700;margin-bottom:8px;display:block}
+.main-input{height:54px;border-radius:12px;border:1px solid #ccd6e4;font-size:1rem;padding:0 16px;box-shadow:none}
+.main-input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(11,92,255,.10)}
+.advanced{background:#f7f9fd;border:1px solid #e5eaf2;border-radius:14px;padding:18px;margin:0}
+.advanced[hidden]{display:none!important}
+.form-label{font-weight:700;font-size:.86rem;margin-bottom:7px}
+.form-control,.form-select{border-radius:10px;border-color:#d5deea;min-height:44px}
+textarea.form-control{min-height:92px}
+.generate-row{text-align:center;margin-top:18px}
+.generate-btn{border:0;border-radius:11px;padding:12px 28px;font-weight:800;font-size:1rem;background:var(--primary);box-shadow:0 8px 18px rgba(11,92,255,.22)}
+.generate-btn:hover{background:var(--primary-dark)}
+.status{min-height:24px}
+.qr-result{margin:12px auto 0;text-align:center}
+#qrcode{min-height:20px}
+#qrcode img,#qrcode canvas{max-width:min(430px,100%);height:auto;border-radius:8px}
+.result-url{max-width:760px;margin:12px auto;word-break:break-word;color:#526074;font-size:.9rem}
+.action-row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+.action-row button{border-radius:9px;font-weight:700}
+.small-note{font-size:.84rem;color:#7b8798}
+.history{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.history-title{font-size:.82rem;font-weight:800;color:#526074;margin-bottom:8px}
+.history button{margin:3px;border-radius:8px}
+.content-section{padding:58px 0 0}
+.section-heading{text-align:center;max-width:720px;margin:0 auto 28px}
+.section-heading h2{font-size:clamp(1.65rem,3vw,2.25rem);font-weight:850;letter-spacing:-.025em;margin:0 0 10px}
+.section-heading p{color:var(--muted);line-height:1.7;margin:0}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feature{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;height:100%;transition:transform .15s ease,box-shadow .15s ease}
+.feature:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(20,42,80,.07)}
+.icon{width:40px;height:40px;border-radius:11px;background:#edf3ff;color:var(--primary);display:grid;place-items:center;font-size:19px;margin-bottom:14px}
+.feature h3{font-size:1.02rem;font-weight:800;margin-bottom:7px}
+.feature p{color:var(--muted);line-height:1.6;font-size:.9rem;margin:0}
+.feature a{text-decoration:none}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px}
+.step-num{font-size:.78rem;font-weight:900;color:var(--primary);margin-bottom:10px}
+.step h3{font-size:1rem;font-weight:800;margin-bottom:7px}
+.step p{font-size:.88rem;color:var(--muted);line-height:1.55;margin:0}
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tool-link{background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px;text-decoration:none;color:var(--ink);font-weight:750}
+.tool-link span{display:block;color:var(--muted);font-size:.78rem;font-weight:500;margin-top:5px;line-height:1.45}
+.faq{max-width:820px;margin:0 auto}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:10px}
+.faq-item h3{font-size:1rem;font-weight:800;margin:0 0 7px}
+.faq-item p{font-size:.9rem;color:var(--muted);line-height:1.65;margin:0}
+.cta{margin:58px 0;background:linear-gradient(135deg,#0b5cff,#4c7dff);border-radius:22px;padding:44px 24px;text-align:center;color:#fff;box-shadow:0 18px 45px rgba(11,92,255,.18)}
+.cta h2{font-weight:850;margin-bottom:10px}
+.cta p{opacity:.9;margin-bottom:20px}
+.cta .btn{background:#fff;color:#0b5cff;border:0;font-weight:800;border-radius:10px;padding:11px 20px}
+.footer{margin-top:65px;background:#111827;color:#aab4c5;padding:28px 20px}
+.footer-inner{max-width:1160px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.footer p{margin:0;font-size:.85rem}
+.footer a{color:#dbe7ff}
+@media(max-width:800px){.nav-links{display:none}.hero{padding-top:42px}.feature-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:repeat(2,1fr)}.tool-head,.tool-body,.type-tabs{padding-left:18px;padding-right:18px}}
+@media(max-width:560px){.page{padding:0 14px}.hero h1{font-size:2.35rem}.hero p{font-size:1rem}.hero-points{gap:10px 16px}.feature-grid,.steps,.tools-grid{grid-template-columns:1fr}.tool-card{border-radius:16px}.type-tabs{gap:6px}.type-tabs button{flex:1 1 calc(50% - 6px);padding:9px 8px}.tool-body{padding:20px 16px}.ad-slot{margin:16px auto;min-height:76px}.cta{border-radius:16px}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Free QR Code Generator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"Free browser-based QR code generator for URLs, text, WiFi, email, phone, SMS and contacts.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this QR code generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Basic QR code creation and PNG download are free."}},{"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No. You can create a basic QR code without signing up."}},{"@type":"Question","name":"Does a static QR code expire?","acceptedAnswer":{"@type":"Answer","text":"A static QR code itself does not expire. The destination or encoded information can become unavailable."}}]}</script>
 </head>
 <body>
-<main class="container">
-<header class="hero text-center"><h1>Free QR Code Generator</h1><p class="lead">Create QR codes for websites, WiFi, text, email, phone numbers, SMS, and contacts. Download, copy, or print instantly.</p><p class="small-note">Free · No account · Works in your browser</p></header>
-<div class="ad-slot" aria-label="Advertisement"><span>Advertisement</span></div>
+<header class="site-header">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a class="brand" href="index.html"><span class="brand-mark">QR</span><span>QR Code Generator</span></a>
+    <div class="nav-links">
+      <a href="#generator-title">Create QR</a>
+      <a href="#tools-title">QR Tools</a>
+      <a href="#faq-title">FAQ</a>
+    </div>
+  </nav>
+</header>
 
-<section class="tool-card" aria-labelledby="generator-title">
-<h2 id="generator-title" class="h3 text-center mb-3">Create a QR Code</h2>
-<div class="type-tabs" role="tablist" aria-label="QR code type">
-<button type="button" class="active" data-type="url">URL / Text</button><button type="button" data-type="wifi">WiFi</button><button type="button" data-type="email">Email</button><button type="button" data-type="phone">Phone</button><button type="button" data-type="sms">SMS</button><button type="button" data-type="vcard">Contact</button>
-</div>
-<div id="urlFields"><label for="text" class="sr-only">URL or text</label><input id="text" type="text" class="form-control" placeholder="https://example.com or enter any text" autocomplete="off"></div>
-<div id="wifiFields" class="advanced" hidden><div class="form-row"><div class="form-group col-md-6"><label for="wifiSsid">WiFi network name</label><input id="wifiSsid" class="form-control" autocomplete="off"></div><div class="form-group col-md-6"><label for="wifiPassword">WiFi password</label><input id="wifiPassword" class="form-control" type="password" autocomplete="off"></div></div><div class="form-group mb-0"><label for="wifiSecurity">Security</label><select id="wifiSecurity" class="form-control"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">No password</option></select></div></div>
-<div id="emailFields" class="advanced" hidden><label for="emailAddress">Email address</label><input id="emailAddress" class="form-control mb-2" type="email" autocomplete="email"><label for="emailSubject">Subject (optional)</label><input id="emailSubject" class="form-control mb-2"><label for="emailBody">Message (optional)</label><textarea id="emailBody" class="form-control" rows="3"></textarea></div>
-<div id="phoneFields" class="advanced" hidden><label for="phoneNumber">Phone number</label><input id="phoneNumber" class="form-control" type="tel" autocomplete="tel"></div>
-<div id="smsFields" class="advanced" hidden><label for="smsNumber">Phone number</label><input id="smsNumber" class="form-control mb-2" type="tel" autocomplete="tel"><label for="smsMessage">Message</label><textarea id="smsMessage" class="form-control" rows="3"></textarea></div>
-<div id="vcardFields" class="advanced" hidden><div class="form-row"><div class="form-group col-md-6"><label for="vName">Name</label><input id="vName" class="form-control" autocomplete="name"></div><div class="form-group col-md-6"><label for="vPhone">Phone</label><input id="vPhone" class="form-control" type="tel" autocomplete="tel"></div></div><div class="form-row"><div class="form-group col-md-6"><label for="vEmail">Email</label><input id="vEmail" class="form-control" type="email" autocomplete="email"></div><div class="form-group col-md-6"><label for="vOrg">Company</label><input id="vOrg" class="form-control" autocomplete="organization"></div></div><label for="vUrl">Website (optional)</label><input id="vUrl" class="form-control" autocomplete="url"></div>
-<div class="d-flex justify-content-center mt-3"><button id="generateButton" class="btn btn-primary btn-lg" type="button">Generate QR Code</button></div>
-<div id="message" class="status text-center text-danger mt-2" role="alert" aria-live="polite"></div><div id="qrcode" class="d-flex justify-content-center" aria-live="polite"></div><p id="urlText" class="text-center text-break mt-3 mb-3"></p>
-<div class="action-row"><button id="downloadButton" class="btn btn-outline-primary" type="button" hidden>Download PNG</button><button id="copyButton" class="btn btn-outline-secondary" type="button" hidden>Copy Content</button><button id="printButton" class="btn btn-outline-secondary" type="button" hidden>Print QR Code</button></div>
-<p class="small-note text-center mt-3 mb-0">Tip: test the QR code with your phone before printing or publishing it.</p>
-<div class="history text-center"><strong>Recent codes</strong><div id="historyList"></div></div>
+<main class="page">
+<section class="hero">
+  <div class="hero-badge">✦ Free online QR generator</div>
+  <h1>Create a QR code <span>in seconds</span></h1>
+  <p>Generate QR codes for websites, WiFi, email, phone numbers, SMS, contacts, and plain text. No signup, no complicated setup — just enter your content and download.</p>
+  <div class="hero-points"><span>✓ Free to use</span><span>✓ No account required</span><span>✓ Works in your browser</span><span>✓ Download PNG</span></div>
 </section>
 
-<section class="content-section" aria-labelledby="tools-title"><h2 id="tools-title">Popular QR Code Tools</h2><div class="feature-grid"><article class="feature"><h3 class="h5"><a href="url-qr-code.html">URL QR Code Generator</a></h3><p class="mb-0">Turn any website link into a downloadable QR code.</p></article><article class="feature"><h3 class="h5"><a href="wifi-qr-code.html">WiFi QR Code Generator</a></h3><p class="mb-0">Create a scannable WiFi sharing code for guests.</p></article><article class="feature"><h3 class="h5"><a href="email-qr-code.html">Email QR Code Generator</a></h3><p class="mb-0">Open a pre-filled email from a QR scan.</p></article><article class="feature"><h3 class="h5"><a href="vcard-qr-code.html">vCard QR Code Generator</a></h3><p class="mb-0">Share contact details with a scan.</p></article><article class="feature"><h3 class="h5"><a href="sms-qr-code.html">SMS QR Code Generator</a></h3><p class="mb-0">Open a prefilled text message with one scan.</p></article><article class="feature"><h3 class="h5"><a href="phone-qr-code.html">Phone QR Code Generator</a></h3><p class="mb-0">Make a phone number instantly callable.</p></article><article class="feature"><h3 class="h5"><a href="whatsapp-qr-code.html">WhatsApp QR Code Generator</a></h3><p class="mb-0">Open a WhatsApp chat from a QR scan.</p></article><article class="feature"><h3 class="h5"><a href="pdf-qr-code.html">PDF QR Code Generator</a></h3><p class="mb-0">Create a QR code for a public PDF link.</p></article><article class="feature"><h3 class="h5"><a href="google-review-qr-code.html">Google Review QR</a></h3><p class="mb-0">Create a QR code for your Google review link.</p></article><article class="feature"><h3 class="h5"><a href="qr-code-scanner.html">QR Code Scanner</a></h3><p class="mb-0">Scan QR codes with your device camera.</p></article><article class="feature"><h3 class="h5"><a href="qr-code-generator-for-business.html">QR Codes for Business</a></h3><p class="mb-0">Explore QR tools for common business use cases.</p></article></div></section>
+<div class="ad-slot" aria-label="Advertisement"><span>Advertisement</span></div>
 
-<section class="content-section" aria-labelledby="features-title"><h2 id="features-title">One QR generator, many use cases</h2><div class="feature-grid">
-<article class="feature"><h3 class="h5">Website QR Code</h3><p class="mb-0">Turn any URL into a scannable QR code for websites, forms, stores, landing pages, menus, and events.</p></article>
-<article class="feature"><h3 class="h5">WiFi QR Code</h3><p class="mb-0">Let guests connect to a wireless network by scanning instead of typing a password.</p></article>
-<article class="feature"><h3 class="h5">Email QR Code</h3><p class="mb-0">Create a pre-filled email link with an address, subject, and optional message.</p></article>
-<article class="feature"><h3 class="h5">Phone & SMS QR Code</h3><p class="mb-0">Make it easy to call a number or start a text message from a printed QR code.</p></article>
-<article class="feature"><h3 class="h5">Contact QR Code</h3><p class="mb-0">Share basic contact details in a QR-friendly vCard format.</p></article>
-<article class="feature"><h3 class="h5">Plain Text QR Code</h3><p class="mb-0">Encode notes, instructions, labels, classroom resources, and other text.</p></article>
-</div></section>
+<section class="generator-wrap" id="generator-title" aria-labelledby="generator-heading">
+<div class="tool-card">
+  <div class="tool-head">
+    <h2 id="generator-heading">Create your QR code</h2>
+    <p>Choose a format below, enter your information, then generate.</p>
+  </div>
+  <div class="type-tabs" role="tablist" aria-label="QR code type">
+    <button type="button" class="active" data-type="url">URL / Text</button>
+    <button type="button" data-type="wifi">WiFi</button>
+    <button type="button" data-type="email">Email</button>
+    <button type="button" data-type="phone">Phone</button>
+    <button type="button" data-type="sms">SMS</button>
+    <button type="button" data-type="vcard">Contact</button>
+  </div>
+  <div class="tool-body">
+    <div id="urlFields">
+      <label for="text" class="input-label">Website URL or text</label>
+      <input id="text" type="text" class="form-control main-input" placeholder="https://example.com or enter any text" autocomplete="off">
+    </div>
+    <div id="wifiFields" class="advanced" hidden>
+      <div class="form-row"><div class="form-group col-md-6"><label class="form-label" for="wifiSsid">WiFi network name</label><input id="wifiSsid" class="form-control" autocomplete="off"></div><div class="form-group col-md-6"><label class="form-label" for="wifiPassword">WiFi password</label><input id="wifiPassword" class="form-control" type="password" autocomplete="off"></div></div>
+      <div class="form-group mb-0"><label class="form-label" for="wifiSecurity">Security</label><select id="wifiSecurity" class="form-control"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">No password</option></select></div>
+    </div>
+    <div id="emailFields" class="advanced" hidden><label class="form-label" for="emailAddress">Email address</label><input id="emailAddress" class="form-control mb-2" type="email" autocomplete="email"><label class="form-label" for="emailSubject">Subject (optional)</label><input id="emailSubject" class="form-control mb-2"><label class="form-label" for="emailBody">Message (optional)</label><textarea id="emailBody" class="form-control" rows="3"></textarea></div>
+    <div id="phoneFields" class="advanced" hidden><label class="form-label" for="phoneNumber">Phone number</label><input id="phoneNumber" class="form-control" type="tel" autocomplete="tel"></div>
+    <div id="smsFields" class="advanced" hidden><label class="form-label" for="smsNumber">Phone number</label><input id="smsNumber" class="form-control mb-2" type="tel" autocomplete="tel"><label class="form-label" for="smsMessage">Message</label><textarea id="smsMessage" class="form-control" rows="3"></textarea></div>
+    <div id="vcardFields" class="advanced" hidden><div class="form-row"><div class="form-group col-md-6"><label class="form-label" for="vName">Name</label><input id="vName" class="form-control" autocomplete="name"></div><div class="form-group col-md-6"><label class="form-label" for="vPhone">Phone</label><input id="vPhone" class="form-control" type="tel" autocomplete="tel"></div></div><div class="form-row"><div class="form-group col-md-6"><label class="form-label" for="vEmail">Email</label><input id="vEmail" class="form-control" type="email" autocomplete="email"></div><div class="form-group col-md-6"><label class="form-label" for="vOrg">Company</label><input id="vOrg" class="form-control" autocomplete="organization"></div></div><label class="form-label" for="vUrl">Website (optional)</label><input id="vUrl" class="form-control" autocomplete="url"></div>
+    <div class="generate-row"><button id="generateButton" class="btn btn-primary generate-btn" type="button">Generate QR Code →</button></div>
+    <div id="message" class="status text-center text-danger mt-2" role="alert" aria-live="polite"></div>
+    <div class="qr-result"><div id="qrcode" class="d-flex justify-content-center" aria-live="polite"></div><p id="urlText" class="result-url"></p></div>
+    <div class="action-row"><button id="downloadButton" class="btn btn-outline-primary" type="button" hidden>Download PNG</button><button id="copyButton" class="btn btn-outline-secondary" type="button" hidden>Copy Content</button><button id="printButton" class="btn btn-outline-secondary" type="button" hidden>Print QR Code</button></div>
+    <p class="small-note text-center mt-3 mb-0">Tip: scan-test your QR code before printing or publishing it.</p>
+    <div class="history text-center"><div class="history-title">Recent codes on this device</div><div id="historyList"></div></div>
+  </div>
+</div>
+</section>
+
+<section class="content-section" aria-labelledby="why-title">
+  <div class="section-heading"><h2 id="why-title">Everything you need to make a QR code</h2><p>Simple enough for everyday use, with the formats people use most often.</p></div>
+  <div class="feature-grid">
+    <article class="feature"><div class="icon">↗</div><h3>Website & Text</h3><p>Create QR codes for URLs, landing pages, menus, documents, instructions, and any plain text.</p></article>
+    <article class="feature"><div class="icon">⌁</div><h3>WiFi Sharing</h3><p>Let guests connect to your wireless network without manually typing a long password.</p></article>
+    <article class="feature"><div class="icon">@</div><h3>Email</h3><p>Open a pre-filled email with an address, subject, and optional message.</p></article>
+    <article class="feature"><div class="icon">☎</div><h3>Phone & SMS</h3><p>Make it easy for customers or contacts to call a number or start a text message.</p></article>
+    <article class="feature"><div class="icon">◎</div><h3>Contact Card</h3><p>Share basic contact details in a QR-friendly vCard format.</p></article>
+    <article class="feature"><div class="icon">↓</div><h3>Download & Print</h3><p>Save your generated code as a PNG, copy its content, or print the QR code.</p></article>
+  </div>
+</section>
 
 <div class="ad-slot" aria-label="Advertisement"><span>Advertisement</span></div>
 
-<section class="content-section" aria-labelledby="how-title"><h2 id="how-title">How to make a QR code</h2><ol><li>Choose a QR type above.</li><li>Enter your information.</li><li>Generate the QR code.</li><li>Download, copy, or print it.</li><li>Scan-test the final code before sharing or printing.</li></ol></section>
-<section class="content-section" aria-labelledby="tips-title"><h2 id="tips-title">QR code best practices</h2><div class="feature-grid"><article class="feature"><h3 class="h5">Keep contrast high</h3><p class="mb-0">Dark modules on a light background are generally easier for scanners to detect.</p></article><article class="feature"><h3 class="h5">Keep the quiet zone</h3><p class="mb-0">Leave clear space around the QR code so its edges remain easy to detect.</p></article><article class="feature"><h3 class="h5">Test before printing</h3><p class="mb-0">Scan the exact final image or print at the intended size before distributing it.</p></article></div></section>
-<section class="content-section faq" aria-labelledby="faq-title"><h2 id="faq-title">QR Code Generator FAQ</h2><h3 class="h5">Is this QR code generator free?</h3><p>Yes. Basic QR code creation and PNG download are free.</p><h3 class="h5">Do I need an account?</h3><p>No. You can create a basic QR code without signing up.</p><h3 class="h5">Does the QR code expire?</h3><p>A static QR code itself has no expiration date. A URL can stop working, so test important codes regularly.</p><h3 class="h5">Can I use QR codes for business?</h3><p>Yes. QR codes can be used on menus, packaging, posters, business cards, events, signage, and marketing materials.</p><h3 class="h5">Is my information uploaded?</h3><p>The basic generator builds the QR content in your browser. Avoid entering information you do not want encoded into the QR code.</p></section>
+<section class="content-section" aria-labelledby="how-title">
+  <div class="section-heading"><h2 id="how-title">Make a QR code in 4 steps</h2><p>No account or design software required.</p></div>
+  <div class="steps">
+    <article class="step"><div class="step-num">STEP 01</div><h3>Choose a type</h3><p>Select URL, WiFi, email, phone, SMS, or contact.</p></article>
+    <article class="step"><div class="step-num">STEP 02</div><h3>Enter your content</h3><p>Fill in the information you want your phone to read.</p></article>
+    <article class="step"><div class="step-num">STEP 03</div><h3>Generate</h3><p>Click the button and your QR code appears instantly.</p></article>
+    <article class="step"><div class="step-num">STEP 04</div><h3>Use it anywhere</h3><p>Download, print, share, or add the QR code to your design.</p></article>
+  </div>
+</section>
+
+<section class="content-section" id="tools-title" aria-labelledby="tools-heading">
+  <div class="section-heading"><h2 id="tools-heading">Popular QR code tools</h2><p>Jump directly to a dedicated QR generator for a specific use case.</p></div>
+  <div class="tools-grid">
+    <a class="tool-link" href="url-qr-code.html">URL QR Code<span>Create a QR code for any website link.</span></a>
+    <a class="tool-link" href="wifi-qr-code.html">WiFi QR Code<span>Share WiFi access with a scan.</span></a>
+    <a class="tool-link" href="email-qr-code.html">Email QR Code<span>Open a pre-filled email.</span></a>
+    <a class="tool-link" href="vcard-qr-code.html">vCard QR Code<span>Share contact information.</span></a>
+    <a class="tool-link" href="sms-qr-code.html">SMS QR Code<span>Open a pre-filled text message.</span></a>
+    <a class="tool-link" href="phone-qr-code.html">Phone QR Code<span>Make a number instantly callable.</span></a>
+    <a class="tool-link" href="whatsapp-qr-code.html">WhatsApp QR Code<span>Open a WhatsApp conversation.</span></a>
+    <a class="tool-link" href="pdf-qr-code.html">PDF QR Code<span>Create a QR code for a public PDF.</span></a>
+    <a class="tool-link" href="google-review-qr-code.html">Google Review QR<span>Share your review link.</span></a>
+    <a class="tool-link" href="qr-code-scanner.html">QR Code Scanner<span>Scan codes with your device camera.</span></a>
+    <a class="tool-link" href="qr-code-generator-for-business.html">QR for Business<span>Explore business QR use cases.</span></a>
+  </div>
+</section>
+
+<section class="content-section" id="faq-title" aria-labelledby="faq-heading">
+  <div class="section-heading"><h2 id="faq-heading">QR Code Generator FAQ</h2><p>Quick answers before you create or print your code.</p></div>
+  <div class="faq">
+    <article class="faq-item"><h3>Is this QR code generator free?</h3><p>Yes. Basic QR code creation and PNG download are free.</p></article>
+    <article class="faq-item"><h3>Do I need an account?</h3><p>No. You can create a basic QR code without signing up.</p></article>
+    <article class="faq-item"><h3>Does a static QR code expire?</h3><p>A static QR code itself does not expire. However, a website or other destination encoded in the QR code can stop working.</p></article>
+    <article class="faq-item"><h3>Is my information uploaded?</h3><p>The basic generator creates the QR content in your browser. Your QR content is encoded into the code you generate, so avoid entering information you do not want to share.</p></article>
+  </div>
+</section>
+
 <div class="ad-slot" aria-label="Advertisement"><span>Advertisement</span></div>
-<section class="content-section text-center"><h2>Create a QR code in seconds</h2><p>Choose a type, enter your information, and generate your code above.</p><a href="#generator-title" class="btn btn-primary">Start Creating</a></section>
+
+<section class="cta">
+  <h2>Ready to create your QR code?</h2>
+  <p>Choose a format, enter your information, and generate it above.</p>
+  <a class="btn" href="#generator-title">Start Creating</a>
+</section>
 </main>
-<footer class="footer"><p class="text-center">Free QR Code Generator · Built with <a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="noopener noreferrer">qrcode.js</a> and <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap</a>.</p></footer>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p>© QR Code Generator · Free browser-based QR tools</p>
+    <p><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · Built with <a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="noopener noreferrer">qrcode.js</a> and <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap</a>.</p>
+  </div>
+</footer>
+
 <script>
 const state={type:'url',content:'',history:[]},$=id=>document.getElementById(id),fields=['url','wifi','email','phone','sms','vcard'];
 function showType(type){state.type=type;document.querySelectorAll('.type-tabs button').forEach(b=>b.classList.toggle('active',b.dataset.type===type));fields.forEach(f=>{const e=$(f+'Fields');if(e)e.hidden=f!==type});$('message').textContent=''}
@@ -70,15 +245,22 @@ if(state.type==='email'){const e=$('emailAddress').value.trim();return e?'mailto
 if(state.type==='phone'){const p=$('phoneNumber').value.trim();return p?'tel:'+p:''}
 if(state.type==='sms'){const p=$('smsNumber').value.trim();return p?'SMSTO:'+p+':'+$('smsMessage').value:''}
 if(state.type==='vcard'){const n=$('vName').value.trim();return n?'BEGIN:VCARD\nVERSION:3.0\nFN:'+n+'\nTEL:'+$('vPhone').value.trim()+'\nEMAIL:'+$('vEmail').value.trim()+'\nORG:'+$('vOrg').value.trim()+'\nURL:'+$('vUrl').value.trim()+'\nEND:VCARD':''}
-return ''
-}
-function renderQR(content){state.content=content;$('message').textContent='';$('qrcode').innerHTML='';new QRCode($('qrcode'),{text:content,width:512,height:512,correctLevel:QRCode.CorrectLevel.M});$('urlText').textContent=content;$('downloadButton').hidden=false;$('copyButton').hidden=false;$('printButton').hidden=false}function generateQRCode(){const content=buildContent();if(!content){$('message').textContent='Please enter the required information.';return}renderQR(content);state.history=[{type:state.type,content:content}].concat(state.history.filter(x=>x.content!==content)).slice(0,5);try{localStorage.setItem('qrHistory',JSON.stringify(state.history))}catch(e){}renderHistory()}
+return ''}
+function renderQR(content){state.content=content;$('message').textContent='';$('qrcode').innerHTML='';new QRCode($('qrcode'),{text:content,width:512,height:512,correctLevel:QRCode.CorrectLevel.M});$('urlText').textContent=content;$('downloadButton').hidden=false;$('copyButton').hidden=false;$('printButton').hidden=false}
+function generateQRCode(){const content=buildContent();if(!content){$('message').textContent='Please enter the required information.';return}renderQR(content);state.history=[{type:state.type,content:content}].concat(state.history.filter(x=>x.content!==content)).slice(0,5);try{localStorage.setItem('qrHistory',JSON.stringify(state.history))}catch(e){}renderHistory()}
 function downloadQRCode(){const c=$('qrcode').querySelector('canvas');if(!c)return;const a=document.createElement('a');a.download='qrcode.png';a.href=c.toDataURL('image/png');a.click()}
 async function copyContent(){if(!state.content)return;try{await navigator.clipboard.writeText(state.content);$('message').textContent='QR content copied.'}catch(e){$('message').textContent='Copy is not available in this browser.'}}
-function printQR(){const c=$('qrcode').querySelector('canvas');if(!c)return;const w=window.open('','_blank','width=700,height=700');w.document.write('<title>Print QR Code</title><body style="text-align:center;font-family:sans-serif"><h1>QR Code</h1><img style="max-width:80%" src="'+c.toDataURL('image/png')+'"><p>Generated with Free QR Code Generator</p></body>');w.document.close();w.focus();w.print()}
+function printQR(){const c=$('qrcode').querySelector('canvas');if(!c)return;const w=window.open('','_blank','width=700,height=700');if(!w){$('message').textContent='Please allow pop-ups to print the QR code.';return}w.document.write('<title>Print QR Code</title><body style="text-align:center;font-family:sans-serif"><h1>QR Code</h1><img style="max-width:80%" src="'+c.toDataURL('image/png')+'"><p>Generated with Free QR Code Generator</p></body>');w.document.close();w.focus();w.print()}
 function renderHistory(){const box=$('historyList');box.innerHTML='';state.history.forEach((x,i)=>{const b=document.createElement('button');b.type='button';b.className='btn btn-sm btn-light';b.textContent=(i+1)+'. '+x.type;b.onclick=()=>{showType(x.type);renderQR(x.content)};box.appendChild(b)})}
-document.querySelectorAll('.type-tabs button').forEach(b=>b.addEventListener('click',()=>showType(b.dataset.type)));$('generateButton').addEventListener('click',generateQRCode);$('text').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();generateQRCode()}});$('downloadButton').addEventListener('click',downloadQRCode);$('copyButton').addEventListener('click',copyContent);$('printButton').addEventListener('click',printQR);
-try{state.history=JSON.parse(localStorage.getItem('qrHistory')||'[]')}catch(e){state.history=[]}renderHistory();
+document.querySelectorAll('.type-tabs button').forEach(b=>b.addEventListener('click',()=>showType(b.dataset.type)));
+$('generateButton').addEventListener('click',generateQRCode);
+$('text').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();generateQRCode()}});
+$('downloadButton').addEventListener('click',downloadQRCode);
+$('copyButton').addEventListener('click',copyContent);
+$('printButton').addEventListener('click',printQR);
+try{state.history=JSON.parse(localStorage.getItem('qrHistory')||'[]')}catch(e){state.history=[]}
+renderHistory();
 if('serviceWorker' in navigator){window.addEventListener('load',()=>{const swPath=new URL('service-worker.js',window.location).pathname;navigator.serviceWorker.register(swPath).catch(err=>console.log('ServiceWorker registration failed:',err))})}
 </script>
-</body></html>
+</body>
+</html>
